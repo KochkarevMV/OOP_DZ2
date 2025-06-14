@@ -22,6 +22,10 @@ class Triangle(Figure):
     def __init__(self, triA, triB, triC):
         if triA <= 0 or triB <= 0 or triC <= 0:
             raise ValueError("Длина сторон должна быть больше нуля")
+        if triA + triB == triC or triA + triC == triB or triB + triC == triA:
+            raise ValueError("Сумма длин двух сторон треуголника не должна быть равна длине третьей стороны")
+        if triA + triB < triC or triA + triC < triB or triB + triC < triA:
+            raise ValueError("Сумма длин двух сторон треуголника не должна быть меньше длины третьей стороны")
         self.triA = triA
         self.triB = triB
         self.triC = triC
@@ -52,7 +56,7 @@ class Circle(Triangle):
         return CircleArea
 
 
-Tri1 = Triangle(4, 3, 5)
+Tri1 = Triangle(4, 7, 10)
 Tri2 = Triangle(4, 3, 2)
 Circle1 = Circle(4, 8)
 
