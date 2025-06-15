@@ -1,22 +1,6 @@
-from abc import ABC, abstractmethod
+from Figure import Figure
 import math
 
-
-class Figure(ABC):
-    
-    @abstractmethod
-    def get_perimeter(self):
-        pass
-
-    @abstractmethod
-    def get_area(self):
-        pass
-
-    def add_area(self, other_figure):
-        if not isinstance(other_figure, Figure):
-            raise ValueError("Аргументом должна быть фигура. Проверьте данные")
-        return self.get_area + other_figure.get_area
-    
 
 class Circle(Figure):
     def __init__(self, circleRadius):
@@ -35,27 +19,10 @@ class Circle(Figure):
         return circleArea
     
 
-class Triangle (Circle):
-    def __init__(self, TriA, circleRadius):
-        self.TriA = TriA
-        self.circleRadius = circleRadius
-        super().__init__(circleRadius)
-    
-    @property
-    def get_area(self):
-        TriP = (self.TriA + self.TriA + self.TriA)/2
-        TriArea = math.trunc(TriP * self.circleRadius)
-        return TriArea
-
-
 Circle1 = Circle(7)
 Circle2 = Circle(5)
-Triangle1 = Triangle(4, 8)
-
 
 print(f" Периметр Circle1 равен {Circle1.get_perimeter}")
 print(f" Площадь Circle1 равна {Circle1.get_area}")
 print(f" Площадь Circle2 равна {Circle2.get_area}")
 print(f" Сумма площадей Circle1 и Circle2 равна {Circle1.add_area(Circle2)}")
-print(f" Площадь Triangle1 равна {Triangle1.get_area}")
-print(f" Сумма площадей Circle1 и Triangle1 равна {Triangle1.add_area(Circle1)}")
